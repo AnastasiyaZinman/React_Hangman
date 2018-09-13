@@ -17,10 +17,12 @@ class App extends Component {
     console.log(letterStatus);
     const letters = Object.keys(letterStatus)
     let firstLetter = letters[0]  
-    // console.log("firstLetter",firstLetter);
     delete letterStatus[firstLetter]
     this.setState({ letterStatus: letterStatus })
-    console.log("letterStatus",letterStatus);
+  }
+  reduceScore = () => {
+    let newScore = this.state.score -10
+    this.setState({ score: newScore })
   }
   generateLetterStatuses(){
     let letterStatus = {};
@@ -36,6 +38,7 @@ class App extends Component {
   <div><Letters letterStatus={this.state.letterStatus} /></div>
   <div><Solution letterStatus={this.state.letterStatus}/></div>
   <button onClick={this.deleteLetter}> Remove First </button>
+  <button onClick={this.reduceScore}> Reduce Score</button>
   </div>
   );
   }

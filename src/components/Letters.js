@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import Letter from './Letter.js';
 class Letters extends Component {
-
-    
     generateLetterTags(letterStatus){
         // let letterTags = [], num=0;
         return Object.keys(letterStatus).map((l, i) => {
@@ -10,7 +8,6 @@ class Letters extends Component {
         })
     }
     render() {
-    // let letterStatuses = this.generateLetterStatuses();
     return (
         <div>
             <div>Available letters</div>

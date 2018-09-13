@@ -2,7 +2,8 @@
   text-align: center;
 }
 .selected{
-  color: grey;
+  /* color: grey; */
+  text-decoration: line-through
 }
 
 .App-logo {

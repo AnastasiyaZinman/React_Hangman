@@ -4,8 +4,8 @@ class Solution extends Component {
     constructor() {
       super()
       this.state = {
-        word: 'word',
-        hint: "Hint"
+        word: 'calm',
+        hint: "Your ideal mood when coding."
       }
     }
     generateLetterTags(){

@@ -9,7 +9,7 @@ class Letters extends Component {
                 letter={l}
                 key={l} 
                 class = {letterStatus[l] ? "selected" : null}
-                deleteLetter = {this.props.deleteLetter}/>)   //the power of JSX!
+                selectLetter = {this.props.selectLetter}/>)   //the power of JSX!
         })
     }
     render() {

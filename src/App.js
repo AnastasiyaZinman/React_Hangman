@@ -25,19 +25,18 @@ class App extends Component {
     return letterStatus 
     }
     
-    deleteLetter = () => {
-      let letterStatus = this.state.letterStatus
-      console.log(letterStatus);
-      const letters = Object.keys(letterStatus)
-      let firstLetter = letters[0]  
-      delete letterStatus[firstLetter]
-      this.setState({ letterStatus: letterStatus })
+    selectLetter = (l) => {
+      // let newletterStatus = this.state.letterStatus;
+      let newletterStatus = {...this.state.letterStatus};
+      console.log("newletterStatus",newletterStatus);
+      newletterStatus[l]=true;
+      this.setState({ letterStatus: newletterStatus })
     }
   render() {
   return (
     <div>
   <div><Score score={this.state.score}/></div>
-  <div><Letters letterStatus={this.state.letterStatus} deleteLetter={this.deleteLetter} /></div>
+  <div><Letters letterStatus={this.state.letterStatus} selectLetter={this.selectLetter} /></div>
   <div><Solution letterStatus={this.state.letterStatus}/></div>
   {/* <button onClick={this.deleteLetter}> Remove First </button>
   <button onClick={this.reduceScore}> Reduce Score</button> */}

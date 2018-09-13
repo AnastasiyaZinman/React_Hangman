@@ -3,7 +3,10 @@ class Letter extends Component {
     render(){
         return(
             <span>
-             <span onClick={this.props.deleteLetter}>{this.props.letter}</span>   
+             <span 
+             className={this.props.class}
+             onClick={this.props.deleteLetter}>
+             {this.props.letter}</span>   
             {/* <span> {this.props.letter}</span> */}
             </span>
         )

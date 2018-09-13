@@ -37,8 +37,8 @@ class App extends Component {
   return (
     <div>
   <div><Score score={this.state.score}/></div>
-  <span><Letters letterStatus={this.state.letterStatus} deleteLetter={this.deleteLetter} /></span>
-  <span><Solution letterStatus={this.state.letterStatus}/></span>
+  <div><Letters letterStatus={this.state.letterStatus} deleteLetter={this.deleteLetter} /></div>
+  <div><Solution letterStatus={this.state.letterStatus}/></div>
   {/* <button onClick={this.deleteLetter}> Remove First </button>
   <button onClick={this.reduceScore}> Reduce Score</button> */}
   </div>

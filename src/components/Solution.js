@@ -11,7 +11,11 @@ class Solution extends Component {
     generateLetterTags(){
         // let letterTags = [], num=0;
         return this.state.word.split('').map((l, i) => {
-            return (<Letter letter={l} key={l}/>)   //the power of JSX!
+            return (<Letter 
+                letter={this.props.letterStatus[l] ? l : "_"} 
+                class="solutionLetter"
+                key={l}
+            />)   //the power of JSX!
         })
     }
     render() {

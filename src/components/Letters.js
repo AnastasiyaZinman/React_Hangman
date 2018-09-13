@@ -4,7 +4,7 @@ class Letters extends Component {
     generateLetterTags(letterStatus){
         // let letterTags = [], num=0;
         return Object.keys(letterStatus).map((l, i) => {
-            return (<Letter letter={l} key={l}/>)   //the power of JSX!
+            return (<Letter letter={l} key={l} deleteLetter={this.props.deleteLetter}/>)   //the power of JSX!
         })
     }
     render() {
@@ -12,7 +12,7 @@ class Letters extends Component {
         <div>
             <div>Available letters</div>
             {/* <div><Letter letter={letter} /></div> */}
-            <div>{this.generateLetterTags(this.props.letterStatus)}</div>
+            <span>{this.generateLetterTags(this.props.letterStatus)}</span>
         </div>
     );
 }

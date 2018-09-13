@@ -12,14 +12,7 @@ class App extends Component {
       score: 100
     }
   }
-  deleteLetter = () => {
-    let letterStatus = this.state.letterStatus
-    console.log(letterStatus);
-    const letters = Object.keys(letterStatus)
-    let firstLetter = letters[0]  
-    delete letterStatus[firstLetter]
-    this.setState({ letterStatus: letterStatus })
-  }
+  
   reduceScore = () => {
     let newScore = this.state.score -10
     this.setState({ score: newScore })
@@ -31,24 +24,25 @@ class App extends Component {
     };
     return letterStatus 
     }
+    
+    deleteLetter = () => {
+      let letterStatus = this.state.letterStatus
+      console.log(letterStatus);
+      const letters = Object.keys(letterStatus)
+      let firstLetter = letters[0]  
+      delete letterStatus[firstLetter]
+      this.setState({ letterStatus: letterStatus })
+    }
   render() {
   return (
     <div>
   <div><Score score={this.state.score}/></div>
-  <div><Letters letterStatus={this.state.letterStatus} /></div>
-  <div><Solution letterStatus={this.state.letterStatus}/></div>
-  <button onClick={this.deleteLetter}> Remove First </button>
-  <button onClick={this.reduceScore}> Reduce Score</button>
+  <span><Letters letterStatus={this.state.letterStatus} deleteLetter={this.deleteLetter} /></span>
+  <span><Solution letterStatus={this.state.letterStatus}/></span>
+  {/* <button onClick={this.deleteLetter}> Remove First </button>
+  <button onClick={this.reduceScore}> Reduce Score</button> */}
   </div>
   );
   }
 }
-
-// class App extends Component {
-// render() {
-//     return (
-//       <Letters />
-//     );
-//   }
-// }
 export default App;

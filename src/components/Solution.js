@@ -4,7 +4,7 @@ class Solution extends Component {
     constructor() {
       super()
       this.state = {
-        word: 'calm',
+        word: 'CALM',
         hint: "Your ideal mood when coding."
       }
     }

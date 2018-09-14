@@ -11,16 +11,15 @@ class App extends Component {
       letterStatus: this.generateLetterStatuses(),
       score: 100,
       word: 'CALM',
-      guessedLetters:0,
+      guessedLetters: 0,
       hint: "Your ideal mood when coding."
     }
   }
-
   reduceScore = (l) => {
     let newScore;
     if (this.state.word.indexOf(l)!==-1)
     { newScore = this.state.score + 5;
-      this.state.guessedLetters++
+     this.addGuessedLetter()
     }
     else {
     newScore = this.state.score - 20}
@@ -33,7 +32,11 @@ class App extends Component {
     };
     return letterStatus 
     }
-    
+    addGuessedLetter(){
+      // this.state.guessedLetters++
+      let newGuessedLetters= this.state.guessedLetters+1;
+      this.setState({guessedLetters: newGuessedLetters})
+    }
     selectLetter = (l) => {
       this.reduceScore(l);
       console.log(l);

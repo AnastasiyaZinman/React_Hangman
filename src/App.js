@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
 import Letters from './components/Letters.js';
 import Score from './components/Score.js';
@@ -10,23 +10,32 @@ class App extends Component {
     this.state = {
       letterStatus: this.generateLetterStatuses(),
       score: 100,
-      word: 'CALM',
+      word: ['CALM','HAPPYNESS','THIRDANSWER'],
       guessedLetters: 0,
-      hint: "Your ideal mood when coding."
+      hint: ["Your ideal mood when coding.","Your ideal mood on hollidays.","THIRDHINT"],
+      level: 0
     }
   }
-  newGame=()=>{
+  newGame = () => {
+    let newLevel = this.newLevel();
+    console.log("newLevel",newLevel);
     this.setState({
       letterStatus: this.generateLetterStatuses(),
       score: 100,
-      word: 'MYNEWONEANSWER',
       guessedLetters: 0,
-      hint: "Your ideal mood on hollidays."
+      level: newLevel
     })
+  }
+  newLevel (){
+    if (this.state.level < this.state.word.length - 1)
+    {
+      return (this.state.level + 1)
+    }
+    else return 0
   }
   reduceScore = (l) => {
     let newScore;
-    if (this.state.word.indexOf(l)!==-1)
+    if (this.state.word[this.state.level].indexOf(l)!==-1)
     { newScore = this.state.score + 5;
      this.addGuessedLetter()
     }
@@ -41,9 +50,10 @@ class App extends Component {
     };
     return letterStatus 
     }
+    
     addGuessedLetter(){
       // this.state.guessedLetters++
-      let newGuessedLetters= this.state.guessedLetters+1;
+      let newGuessedLetters= this.state.guessedLetters + 1;
       this.setState({guessedLetters: newGuessedLetters})
     }
     selectLetter = (l) => {
@@ -56,7 +66,7 @@ class App extends Component {
       this.setState({ letterStatus: newletterStatus })
     }
   render() {
-    debugger;
+    // console.log("this.state.level",this.state.level)
     if (this.state.score<=0) 
     {return (
       <div>
@@ -64,20 +74,20 @@ class App extends Component {
       <button onClick={this.newGame}> Restart Game </button>
       </div>)
     }
-    else if ((this.state.score>0) && (this.state.guessedLetters===this.state.word.length))
+    else if ((this.state.score>0) && (this.state.guessedLetters===this.state.word[this.state.level].length))
     {
       return (
       <div>
-      <div className="game-win">WIN!</div>;
+      <div className="game-win">WIN!</div>
       <button onClick={this.newGame}> Restart Game </button>
       </div>)
     }
     return (
-    <div>
-      <span>{this.state.notGuessedLetters}</span>
+  <div>
+  <span>{this.state.notGuessedLetters}</span>
   <div className="score"><Score score={this.state.score}/></div>
   <div><Letters letterStatus={this.state.letterStatus} selectLetter={this.selectLetter} /></div>
-  <div><Solution word={this.state.word} hint={this.state.hint}  letterStatus={this.state.letterStatus}/></div>
+  <div><Solution word={this.state.word[this.state.level]} hint={this.state.hint[this.state.level]}  letterStatus={this.state.letterStatus}/></div>
   {/* <button onClick={this.deleteLetter}> Remove First </button>
   <button onClick={this.reduceScore}> Reduce Score</button> */}
   </div>

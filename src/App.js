@@ -9,12 +9,18 @@ class App extends Component {
     super()
     this.state = {
       letterStatus: this.generateLetterStatuses(),
-      score: 100
+      score: 100,
+      word: 'CALM',
+      hint: "Your ideal mood when coding."
     }
   }
   
-  reduceScore = () => {
-    let newScore = this.state.score -10
+  reduceScore = (l) => {
+    let newScore;
+    if (this.state.word.indexOf(l)!==-1)
+    { newScore = this.state.score + 5}
+    else {
+    newScore = this.state.score - 20}
     this.setState({ score: newScore })
   }
   generateLetterStatuses(){
@@ -26,6 +32,7 @@ class App extends Component {
     }
     
     selectLetter = (l) => {
+      this.reduceScore(l);
       // let newletterStatus = this.state.letterStatus;
       let newletterStatus = {...this.state.letterStatus};
       console.log("newletterStatus",newletterStatus);
@@ -37,7 +44,7 @@ class App extends Component {
     <div>
   <div><Score score={this.state.score}/></div>
   <div><Letters letterStatus={this.state.letterStatus} selectLetter={this.selectLetter} /></div>
-  <div><Solution letterStatus={this.state.letterStatus}/></div>
+  <div><Solution word={this.state.word} hint={this.state.hint}  letterStatus={this.state.letterStatus}/></div>
   {/* <button onClick={this.deleteLetter}> Remove First </button>
   <button onClick={this.reduceScore}> Reduce Score</button> */}
   </div>

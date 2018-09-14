@@ -9,7 +9,8 @@ class Letter extends Component {
              <span 
              className={this.props.class}
              onClick={this.selectLetter}>
-             {this.props.letter}</span>   
+             {this.props.letter}
+             </span>   
             {/* <span> {this.props.letter}</span> */}
             </span>
         )

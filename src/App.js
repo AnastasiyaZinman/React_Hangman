@@ -42,7 +42,7 @@ class App extends Component {
   render() {
   return (
     <div>
-  <div><Score score={this.state.score}/></div>
+  <div className="score"><Score score={this.state.score}/></div>
   <div><Letters letterStatus={this.state.letterStatus} selectLetter={this.selectLetter} /></div>
   <div><Solution word={this.state.word} hint={this.state.hint}  letterStatus={this.state.letterStatus}/></div>
   {/* <button onClick={this.deleteLetter}> Remove First </button>

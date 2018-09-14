@@ -15,6 +15,15 @@ class App extends Component {
       hint: "Your ideal mood when coding."
     }
   }
+  newGame=()=>{
+    this.setState({
+      letterStatus: this.generateLetterStatuses(),
+      score: 100,
+      word: 'MYNEWONEANSWER',
+      guessedLetters: 0,
+      hint: "Your ideal mood on hollidays."
+    })
+  }
   reduceScore = (l) => {
     let newScore;
     if (this.state.word.indexOf(l)!==-1)
@@ -47,9 +56,22 @@ class App extends Component {
       this.setState({ letterStatus: newletterStatus })
     }
   render() {
-    if (this.state.score<=0) return <div className="game-over">GAME OVER</div>
-    else if (this.state.score>0 && this.state.guessedLetters===this.state.word.length)
-    return <div className="game-win">WIN!</div>
+    debugger;
+    if (this.state.score<=0) 
+    {return (
+      <div>
+      <div className="game-over">GAME OVER</div>
+      <button onClick={this.newGame}> Restart Game </button>
+      </div>)
+    }
+    else if ((this.state.score>0) && (this.state.guessedLetters===this.state.word.length))
+    {
+      return (
+      <div>
+      <div className="game-win">WIN!</div>;
+      <button onClick={this.newGame}> Restart Game </button>
+      </div>)
+    }
     return (
     <div>
       <span>{this.state.notGuessedLetters}</span>

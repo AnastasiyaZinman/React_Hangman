@@ -12,7 +12,7 @@ class App extends Component {
       score: 100,
       word: ['CALM','HAPPYNESS','THIRDANSWER'],
       guessedLetters: 0,
-      hint: ["Your ideal mood when coding.","Your ideal mood on hollidays.","THIRDHINT"],
+      hint: ["Your ideal mood when coding.","Your usual mood on hollidays.","THIRDHINT"],
       level: 0
     }
   }
@@ -89,23 +89,22 @@ countOfSelectedLetterInAnswer (letter,answer){
     {
     if (this.state.score<=0) 
     {return (
-      <div>
+      <div className="container">
       <div className="game-over">:( try again </div>
-      <button onClick={this.newGame}> Restart Game </button>
+      <button onClick={this.newGame}><span> Restart Game</span> </button>
       </div>)
     }
     else if ((this.state.score>0) && (this.state.guessedLetters===this.state.word[this.state.level].length))
     {
       return (
-      <div>
+      <div className="container">
       <div className="game-win">WIN!</div>
-      <button onClick={this.newGame}> Restart Game </button>
+      <button onClick={this.newGame}><span>Restart Game</span></button>
       </div>)
     }
-  } else return (<div className="game-over">GAME OVER, sorry we haven't more levels for you</div>)
+  } else return (<div className="container game-over">GAME OVER <br /> sorry we haven't more levels for you</div>)
   return (
   <div className="container">
-  <span>{this.state.notGuessedLetters}</span>
   <div className="score"><Score score={this.state.score}/></div>
   <div><Letters letterStatus={this.state.letterStatus} selectLetter={this.selectLetter} /></div>
   <div><Solution word={this.state.word[this.state.level]} hint={this.state.hint[this.state.level]}  letterStatus={this.state.letterStatus}/></div>

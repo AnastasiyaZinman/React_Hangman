@@ -15,7 +15,7 @@ class Letters extends Component {
     render() {
     return (
         <div>
-            <div>Available letters</div>
+            <div className="game-text">Available letters:</div>
             {/* <div><Letter letter={letter} /></div> */}
             <span>{this.generateLetterTags()}</span>
         </div>

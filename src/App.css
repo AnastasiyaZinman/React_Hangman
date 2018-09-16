@@ -1,19 +1,54 @@
-* {
-  background-color: #67aedd;
-  font-size: 40px;
+body {
+  /* background-color: #67aedd; */
+  position: relative;
+  background-image: url("components/img/bg.jpeg");
+  background-size: cover;
+  font-size: 80px;
+  font-family: 'Indie Flower', cursive;
+  font-family: 'Reenie Beanie', cursive;
 }
 .App {
   text-align: center;
 }
+.solutionLetter{
+  color:rgb(26, 81, 133);
+}
 .container{
-margin: 10% 20%;
+  position: relative;
 text-align: center;
 }
 .selected{
   /* color: grey; */
-  text-decoration: line-through
+  text-decoration: line-through;
+}
+/*----------------xxx*/
+button {
+  display: inline-block;
+  padding: 15px 25px;
+  font-size: 24px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 5px 9px #999;
 }
 
+button:hover {background-color: #3e8e41}
+
+button:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+/*------------------------xxx*/
+.title{
+  font-weight: bold;
+  font-size:150px;
+}
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 80px;
@@ -23,13 +58,13 @@ text-align: center;
   margin: 0 auto;
 }
 .score{
-  font-size: 80px;
+  font-size: 150px;
 }
 .high-score{
   color: green;
 }
 .medium-score{
-  color: yellow;
+  color: rgb(194, 197, 39);
 }
 .low-score{
   color: red;
@@ -47,7 +82,10 @@ text-align: center;
   padding: 20px;
   color: white;
 }
+.game-text{
+  color: rgb(14, 59, 110);
 
+}
 .App-title {
   font-size: 1.5em;
 }
@@ -55,8 +93,12 @@ text-align: center;
 .App-intro {
   font-size: large;
 }
-
+.game-win {
+  margin-top:100px;
+color:green;
+}
 .game-over{
+  margin-top:100px;
 color:red;
 }
 @keyframes App-logo-spin {

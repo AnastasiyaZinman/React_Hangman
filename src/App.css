@@ -5,6 +5,10 @@
 .App {
   text-align: center;
 }
+.container{
+margin: 10% 20%;
+text-align: center;
+}
 .selected{
   /* color: grey; */
   text-decoration: line-through

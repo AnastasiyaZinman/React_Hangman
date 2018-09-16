@@ -31,18 +31,34 @@ class App extends Component {
     {
       return (this.state.level + 1)
     }
-    else return 0
+    else return -1
   }
-  reduceScore = (l) => {
-    let newScore;
-    if (this.state.word[this.state.level].indexOf(l)!==-1)
-    { newScore = this.state.score + 5;
-     this.addGuessedLetter()
+
+countOfSelectedLetterInAnswer (letter,answer){
+  let count = 0;
+  let pos = answer.indexOf(letter);
+  while (pos !== -1) {
+  count++;
+  pos = answer.indexOf(letter, pos + 1);
+  }
+  return count;
+}
+
+  changeScore = (letter) => {
+    var newScore = this.state.score,
+    word = this.state.word[this.state.level];
+    // console.log("word",word, "newScore",newScore);
+    let countOfSelectedLetter = this.countOfSelectedLetterInAnswer(letter,word);
+    if (countOfSelectedLetter)
+    { newScore = newScore + 5;
+     this.addCountOfGuessedLetter(countOfSelectedLetter)
     }
     else {
-    newScore = this.state.score - 20}
-    this.setState({ score: newScore })
-  }
+    newScore = newScore - 20
+    }  
+    this.setState({score: newScore })
+    }
+   
   generateLetterStatuses(){
     let letterStatus = {};
     for(let num = 65; num < 90; num++) {
@@ -51,13 +67,15 @@ class App extends Component {
     return letterStatus 
     }
     
-    addGuessedLetter(){
+    addCountOfGuessedLetter(count){
       // this.state.guessedLetters++
-      let newGuessedLetters= this.state.guessedLetters + 1;
+      console.log();
+      let newGuessedLetters= this.state.guessedLetters + count;
+      // console.log("newGuessedLetters",newGuessedLetters);
       this.setState({guessedLetters: newGuessedLetters})
     }
     selectLetter = (l) => {
-      this.reduceScore(l);
+      this.changeScore(l);
       console.log(l);
       // let newletterStatus = this.state.letterStatus;
       let newletterStatus = {...this.state.letterStatus};
@@ -67,10 +85,12 @@ class App extends Component {
     }
   render() {
     // console.log("this.state.level",this.state.level)
+    if (this.state.level!==-1) 
+    {
     if (this.state.score<=0) 
     {return (
       <div>
-      <div className="game-over">GAME OVER</div>
+      <div className="game-over">:( try again </div>
       <button onClick={this.newGame}> Restart Game </button>
       </div>)
     }
@@ -82,8 +102,9 @@ class App extends Component {
       <button onClick={this.newGame}> Restart Game </button>
       </div>)
     }
-    return (
-  <div>
+  } else return (<div className="game-over">GAME OVER, sorry we haven't more levels for you</div>)
+  return (
+  <div className="container">
   <span>{this.state.notGuessedLetters}</span>
   <div className="score"><Score score={this.state.score}/></div>
   <div><Letters letterStatus={this.state.letterStatus} selectLetter={this.selectLetter} /></div>
